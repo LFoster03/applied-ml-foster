@@ -1,4 +1,4 @@
-# ml-01
+# Project 01
 
 ## Overview
 Businesses and organizations often need to understand the relationships between different factors to make better decisions.
@@ -25,16 +25,11 @@ We use scikit-learn, built on NumPy, SciPy, and matplotlib
    - Scikit-learn supports classification, regression, and clustering.
    - This project applies regression.
 
-**Important:** Use a 2-step installation to avoid timeouts and partial installs:  
-1. **First Install:** Install from `requirements.txt` with `scikit-learn` commented out.  
-2. **Second Install:** Uncomment `scikit-learn` and rerun the install command.
-
----
 
 ## Professional Python Setup and Workflow
 We follow professional Python practices. 
-Full instructions are available at <https://github.com/denisecase/pro-analytics-01/>. 
-A concise version is provided at [WORKFLOW_GUIDE.md](./docs/WORKFLOW_GUIDE.md)
+Full instructions are available at <https://github.com/denisecase/pro-analytics-02/>. 
+
 
 **Important:** VS Code + Pylance may fail to recognize installed packages in Jupyter notebooks.  
 See the above guides for troubleshooting and solutions.  
@@ -79,7 +74,7 @@ Analysis: Why did you choose these features? How might they impact predictions?
 
 Analysis: How well did the model perform? Any surprises in the results?
 
-See [EXAMPLE_ANALYSIS](./docs/EXAMPLE_ANALYSIS.md) for more.
+See [EXAMPLE_ANALYSIS](./EXAMPLE_ANALYSIS.md) for more.
 
 ---
 
@@ -92,14 +87,3 @@ Include a professional README.md. Include:
 - Instructions on how to set up your virtual environment and run your notebook locally.
    
 If starting with an assignment README, remove the parts you do not need to present your project.
----
-
-## Repository Checklist
-
-Verify your repository contains:
-
-- [ ] Useful .gitignore (that keeps .venv out of GitHub)
-- [ ] Professional Jupyter Notebook with numbered sections   
-- [ ] Useful README.md
-- [ ] Useful requirements.txt
-
