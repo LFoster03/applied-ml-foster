@@ -7,10 +7,10 @@
 # TODO: Update site_author
 
 site_name: Applied ML Project Foster
-site_url: https://denisecase.github.io/applied-ml-template/
-repo_url: https://github.com/denisecase/applied-ml-template
-site_description: Professional applied ML project
-site_author: Denise Case
+site_url: https://github.com/LFoster03/applied-ml-foster
+repo_url: https://github.com/LFoster03/applied-ml-foster
+site_description: Professional Applied ML Project
+site_author: Lindsay Foster
 docs_dir: docs
 site_dir: site
 
