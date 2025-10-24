@@ -17,86 +17,21 @@ uv run pre-commit run --all-files
 git add .
 uv run pytest
 
-🧭 Data Cleaning Workflow
+# Step 1 for Example01: Data Cleaning Workflow
 
 The cleaning process follows these steps:
 
-1. Load the Dataset
+1. Load the Dataset, Identify Missing Values, Convert Numeric Columns, Remove Rows Missing the Target Variable, Fill Missing Numeric Values, Fill Missing Categorical Values, Standardize Text Columns, Convert Text Numbers to Numeric, Save the Cleaned Data
 
-Reads the CSV file into a pandas DataFrame and prints the initial shape and missing values.
+- Cleaned data saved to: automobile_price_data3_cleaned.csv
 
-df = pd.read_csv(DATA_PATH)
-
-2. Identify Missing Values
-
-Replaces placeholder missing values like ? or empty strings ("") with proper NaN.
-
-df.replace("?", pd.NA, inplace=True)
-df.replace("", pd.NA, inplace=True)
-
-3. Convert Numeric Columns
-
-Ensures numeric columns are stored as numbers (not strings).
-Invalid entries are automatically converted to NaN.
-
-df[col] = pd.to_numeric(df[col], errors="coerce")
-
-4. Remove Rows Missing the Target Variable
-
-Rows missing the price value are dropped, since price is the key target variable.
-
-df = df.dropna(subset=["price"])
-
-5. Fill Missing Numeric Values
-
-Missing numeric entries are replaced with the median of that column.
-
-df[col].fillna(df[col].median(), inplace=True)
-
-6. Fill Missing Categorical Values
-
-Missing text/categorical entries are replaced with the most frequent (mode) value.
-
-df[col].fillna(df[col].mode()[0], inplace=True)
-
-7. Standardize Text Columns
-
-All text columns are cleaned to lowercase and stripped of whitespace for consistency.
-
-df[col] = df[col].astype(str).str.lower().str.strip()
-
-8. Convert Text Numbers to Numeric
-
-Creates a numeric version of the “doors” column for analysis or modeling.
-
-df["doors_num"] = df["doors"].map({"two": 2, "three": 3, "four": 4, "five": 5})
-
-9. Save the Cleaned Data
-
-Saves the fully cleaned dataset as a new CSV file.
-
-df.to_csv(OUTPUT_PATH, index=False)
-
-✅ Output
-
-When the script completes successfully, you’ll see logs like:
-
-Reading data from: automobile_price_data3.csv
-Initial shape: (205, 11)
-Dropped 4 rows missing price. New shape: (201, 11)
-Filled numeric column 'bhp' with median = 110.0
-✅ Cleaned data saved to: automobile_price_data3_cleaned.csv
-
-
-Your cleaned dataset is now ready for exploratory data analysis (EDA) or machine learning.
-
-# 🤖 Step 2: Train–Test Split
+# Step 2: Train–Test Split
 
 Once the data is cleaned, the next step is to **prepare it for machine learning** by splitting it into a training set and a test set.
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
 The dataset is divided into:
 - **Training set (80%)** — used to train the model  
@@ -106,7 +41,7 @@ This ensures that model performance is measured on unseen data.
 
 ---
 
-## 🧩 Script Overview: `2_train_test_split.py`
+## Script Overview: `2_train_test_split.py`
 
 ### 1. **Load Cleaned Data**
 ```python
@@ -133,42 +68,17 @@ File	Purpose
 train_data.csv	Training dataset (80%)
 test_data.csv	Test dataset (20%)
 
-✅ Output Example
-kotlin
-Copy code
-✅ Data Split Complete
-Training set: 161 rows
-Test set: 40 rows
-Training data saved to: train_data.csv
-Test data saved to: test_data.csv
 
-# 🧠 Example 02 — Howell Dataset (Machine Learning Preparation)
+# Example 02 — Howell Dataset (Machine Learning Preparation)
 
 This example demonstrates how to **load, inspect, clean, and prepare** the `Howell.csv` dataset for a machine learning project.  
 The dataset contains information on individuals’ **height**, **weight**, **age**, and **gender**.
 
----
-
-## 📂 Project Structure
-
-example02/
-│
-├── Howell.csv
-├── Howell_cleaned.csv
-├── 1_data_cleaning.py
-├── 2_train_test_split.py
-├── README.md
-
-pgsql
-Copy code
-
----
-
-## ⚙️ Step 1: Load and Inspect the Data
+## Step 1: Load and Inspect the Data
 
 The first step loads the dataset safely and performs basic checks for missing values and duplicates.
 
-### 🔹 Script: `1_data_cleaning.py`
+### Script: `1_data_cleaning.py`
 
 **Purpose:**
 - Load `Howell.csv` from the same directory.
@@ -212,34 +122,15 @@ Copy code
 C:\Repos\applied-ml-foster\notebooks\example02\Howell_cleaned.csv
 This cleaned dataset will be used for training and testing in later steps.
 
-✅ Example output after cleaning:
-
-yaml
-Copy code
-✅ Howell dataset loaded successfully!
-Rows: 544, Columns: 4
-🔹 Missing values: 0
-🔹 Duplicate rows: 0
-💾 Cleaned file saved to: C:\Repos\applied-ml-foster\notebooks\example02\Howell_cleaned.csv
-▶️ How to Run
-In VS Code terminal:
-
-bash
-Copy code
-cd C:\Repos\applied-ml-foster\notebooks\example02
-python 1_data_cleaning.py
-
 # Lab 2 - Exploring and Visualizing the Howell Dataset
 
 This lab uses the cleaned Howell dataset (`Howell_cleaned.csv`) to create visualizations, explore patterns, and add features for analysis.  
 
 Using the cleaned dataset ensures that the visualizations are meaningful and consistent with your workflow.
 
----
+## Notebook Setup
 
-## 🧭 Notebook Setup
-
-### 1️⃣ Imports
+### Imports
 ```python
 from pathlib import Path
 import pandas as pd
@@ -262,86 +153,18 @@ howell_df.info()
 howell_df.head()
 If the file was saved with commas instead of semicolons, change sep=";" to sep=",".
 
-3️⃣ Quick Visualizations
+## Quick Visualizations
 Height Distribution
-python
-Copy code
-plt.figure(figsize=(8,5))
-sns.histplot(x=howell_df['height'], kde=True, color='skyblue')
-plt.title("Height Distribution")
-plt.xlabel("Height (cm)")
-plt.ylabel("Count")
-plt.show()
 Weight Distribution
-python
-Copy code
-plt.figure(figsize=(8,5))
-sns.histplot(x=howell_df['weight'], kde=True, color='salmon')
-plt.title("Weight Distribution")
-plt.xlabel("Weight (kg)")
-plt.ylabel("Count")
-plt.show()
 Height vs Weight by Gender
-python
-Copy code
-plt.figure(figsize=(8,6))
-sns.scatterplot(data=howell_df, x="weight", y="height", hue="male", palette=["#ff69b4", "#1e90ff"])
-plt.title("Height vs Weight by Gender (0 = Female, 1 = Male)")
-plt.xlabel("Weight (kg)")
-plt.ylabel("Height (cm)")
-plt.show()
-4️⃣ Create and Visualize BMI
-python
-Copy code
+Create and Visualize BMI
 # Calculate BMI
-howell_df["BMI"] = howell_df["weight"] / (howell_df["height"]/100)**2
-
-plt.figure(figsize=(8,5))
-sns.histplot(x=howell_df["BMI"], kde=True, color="mediumseagreen")
-plt.title("BMI Distribution")
-plt.xlabel("BMI")
-plt.ylabel("Count")
-plt.show()
-5️⃣ Create BMI Categories
-python
-Copy code
-def bmi_category(bmi):
-    if bmi < 18.5:
-        return "Underweight"
-    elif bmi < 25:
-        return "Normal"
-    elif bmi < 30:
-        return "Overweight"
-    else:
-        return "Obese"
-
-howell_df["bmi_category"] = howell_df["BMI"].apply(bmi_category)
-
+Create BMI Categories
 # Check counts
-howell_df["bmi_category"].value_counts()
-6️⃣ Visualize BMI Category by Gender
-python
-Copy code
-plt.figure(figsize=(8,5))
-sns.countplot(data=howell_df, x="bmi_category", hue="male", palette="Set2")
-plt.title("BMI Category by Gender")
-plt.xlabel("BMI Category")
-plt.ylabel("Count")
-plt.show()
-7️⃣ Age vs Height (Adults Only)
-python
-Copy code
+Visualize BMI Category by Gender
+Age vs Height (Adults Only)
 # Filter for adults (age ≥ 18)
-howell_adult = howell_df[howell_df["age"] >= 18]
-
-plt.figure(figsize=(8,5))
-sns.scatterplot(data=howell_adult, x="age", y="height", hue="male", alpha=0.7)
-plt.title("Adult Height vs Age by Gender")
-plt.xlabel("Age (years)")
-plt.ylabel("Height (cm)")
-plt.show()
-
-## 9️⃣ Splitting the Data by Age and Masking
+## Splitting the Data by Age and Masking
 
 Sometimes we want to **restrict the data used in plots** without removing any rows. This can be done using **masking**, which tells the plotting function which values to include.  
 
@@ -394,13 +217,13 @@ Performing a stratified train/test split
 
 Saving the resulting datasets to CSV
 
-🧭 Setup
-1️⃣ Imports
+Setup
+1. Imports
 from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-2️⃣ Load the Cleaned Howell Data
+2. Load the Cleaned Howell Data
 # Path to cleaned CSV
 data_path = Path(r"C:\Repos\applied-ml-foster\notebooks\example02\Howell_cleaned.csv")
 
@@ -411,7 +234,7 @@ howell_df = pd.read_csv(data_path, sep=",")  # CSV uses commas
 howell_df.info()
 howell_df.head()
 
-3️⃣ Add BMI and BMI Categories
+3. Add BMI and BMI Categories
 # Calculate BMI
 howell_df["BMI"] = howell_df["weight"] / (howell_df["height"]/100)**2
 
@@ -432,14 +255,13 @@ howell_df["bmi_category"] = howell_df["BMI"].apply(bmi_category)
 # Save updated CSV
 howell_df.to_csv(r"C:\Repos\applied-ml-foster\notebooks\example02\Howell_cleaned.csv", index=False)
 
+ Note: In this dataset, only Underweight and Normal categories exist.
 
-⚠️ Note: In this dataset, only Underweight and Normal categories exist.
-
-4️⃣ Filter Adults
+4. Filter Adults
 # Keep only adults (age ≥ 18)
 howell_adult = howell_df[howell_df["age"] >= 18]
 
-5️⃣ Prepare Features and Target
+5. Prepare Features and Target
 X = howell_adult[["height", "weight", "age"]]
 y = howell_adult["bmi_category"]
 
@@ -449,7 +271,7 @@ mask = y.isin(valid_categories)
 X = X[mask]
 y = y[mask]
 
-6️⃣ Stratified Train/Test Split
+6. Stratified Train/Test Split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y,
     test_size=0.2,
@@ -457,7 +279,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
-7️⃣ Combine Features and Target & Save CSVs
+7. Combine Features and Target & Save CSVs
 train_data = X_train.copy()
 train_data["bmi_category"] = y_train
 
@@ -467,7 +289,7 @@ test_data["bmi_category"] = y_test
 train_data.to_csv(r"C:\Repos\applied-ml-foster\notebooks\example02\train_data.csv", index=False)
 test_data.to_csv(r"C:\Repos\applied-ml-foster\notebooks\example02\test_data.csv", index=False)
 
-8️⃣ Sanity Check
+8. Sanity Check
 print("Training set shape:", train_data.shape)
 print("Test set shape:", test_data.shape)
 print("\nTraining distribution:\n", y_train.value_counts())
@@ -481,12 +303,12 @@ Only categories with ≥ 2 samples are included to prevent errors.
 
 The final CSV files are ready for downstream modeling tasks.
 
-California Housing Price Prediction
-📘 Overview
+# Project01 California Housing Price Prediction
+## Overview
 
 This project aims to predict the median house values in California's districts using the California Housing dataset. The dataset comprises various features such as median income, average number of rooms, and geographic coordinates. The goal is to build a machine learning model that can accurately estimate house prices based on these features.
 
-🧪 Project Workflow
+Project Workflow
 1. Load and Explore the Data
 
 Load the dataset using fetch_california_housing from sklearn.datasets.
