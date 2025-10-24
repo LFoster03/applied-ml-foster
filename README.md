@@ -1,6 +1,11 @@
-# applied-ml-template
+# applied-ml-foster
 
-> Use this repo to start a professional Python project.
+> Start a professional Python project.
+>
+> Clone repo to local
+> Install Extensions
+> Set up virtual environment
+> Git Commit
 
 - Additional instructions: See the [pro-analytics-02](https://denisecase.github.io/pro-analytics-02/) guide.
 - Project organization: [STRUCTURE](./STRUCTURE.md)

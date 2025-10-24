@@ -9,12 +9,12 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools>=80", "wheel"]
 
 [project]
-authors = [{name = "Denise Case"}] # TODO: Change to YOUR name (ownership matters)
+authors = [{name = "Lindsay Foster"}] # TODO: Change to YOUR name (ownership matters)
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.12",
 ]
-description = "Applied ML Template"
+description = "Applied ML Foster"
 name = "analytics-project" # PACKAGE name (matches src folder except with dashes)
 readme = "README.md"
 license = "MIT"
