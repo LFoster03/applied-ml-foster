@@ -1,0 +1,118 @@
+# Project 
+Create the virtual environment
+
+Use Python’s built-in venv module:
+
+python -m venv .venv
+
+
+.venv is the folder where your virtual environment will be stored.
+
+After this, your project folder will have a .venv directory.
+
+Tip: Use lowercase .venv (or venv) for convention. VS Code automatically recognizes .venv.
+
+Step 3: Activate the virtual environment
+
+Windows (PowerShell):
+
+.venv\Scripts\Activate.ps1
+
+A requirements.txt lists all the Python packages your project needs so others (or you in a new environment) can install them easily with pip install -r requirements.txt.
+
+For Project 2 – Titanic Dataset Analysis, here’s a typical requirements.txt you can use:
+
+pandas==2.2.0
+numpy==1.26.0
+matplotlib==3.8.1
+seaborn==0.12.2
+scikit-learn==1.3.2
+jupyter==1.0.0
+notebook==7.8.0
+
+How to use it
+
+Save this file as requirements.txt in your project02 folder.
+
+Make sure your virtual environment is activated (.venv).
+
+Install all packages with:
+
+pip install -r requirements.txt
+
+Select .venv as the kernel
+
+Step 2: Tell VS Code to use this .venv interpreter
+
+Press Ctrl+Shift+P → type Python: Select Interpreter.
+
+Look for the interpreter in your .venv, e.g.:
+
+C:\Repos\project02\.venv\Scripts\python.exe
+
+
+Select it.
+
+Reload VS Code to make sure it takes effect.
+
+This makes your editor aware of all packages installed in .venv.
+
+
+Project 2 – Titanic Dataset Analysis
+
+Name: Your Name
+Date: YYYY-MM-DD
+
+Introduction
+
+The Titanic dataset contains information about passengers aboard the Titanic, including demographics, ticket details, and survival status. The goal of this project is to explore the dataset, handle missing data, create meaningful features, and prepare the data for machine learning models to predict passenger survival.
+
+2.1 Data Loading
+
+The dataset is loaded into a structured format that allows for easy inspection and analysis. Initial exploration helps us understand the columns available, the types of data, and any immediate patterns or anomalies in the dataset.
+
+2.2 Handle Missing Values and Clean Data
+
+Age: Some passenger ages are missing. These missing values are imputed using the median age to maintain the overall distribution without skewing the data.
+
+Embark Town: A few entries for embarkation town are missing. These are filled using the mode (most common embarkation point) to ensure consistency.
+
+Other Data Cleaning: Additional columns with missing or irrelevant data are either imputed or removed to ensure the dataset is clean and ready for analysis.
+
+Reflection: Handling missing values carefully prevents bias in the model and ensures that the dataset remains representative of the original passengers.
+
+2.3 Feature Engineering
+
+Family Size: A new feature family_size is created by summing the number of siblings/spouses and parents/children traveling with a passenger, plus one for the passenger themselves. This feature captures potential survival patterns related to traveling alone or in groups.
+
+Categorical Conversion: Categorical variables such as sex and embarked are converted to numeric values so that machine learning models can process them effectively.
+
+Alone Feature: A binary feature indicating whether a passenger is traveling alone is created, providing an additional signal that may correlate with survival.
+
+Reflection: Feature engineering is critical for improving model performance, as it introduces new information that may reveal hidden patterns in the data.
+
+2.4 Exploratory Data Analysis (EDA)
+
+The dataset is visualized using summary statistics, histograms, boxplots, and countplots to identify trends and patterns.
+
+Relationships between features such as age, sex, family size, and survival are explored to inform feature selection and model building.
+
+Reflection: EDA provides insights into the factors influencing survival and helps guide decisions about which features to include in the model.
+
+2.5 Data Preparation
+
+The dataset is split into features (inputs) and target (survival outcome).
+
+Data is further split into training and testing sets to evaluate model performance.
+
+Numeric scaling and categorical encoding are applied as needed to ensure the model receives standardized and meaningful inputs.
+
+Reflection: Proper data preparation ensures that the machine learning model can learn effectively and generalize well to unseen data.
+
+2.6 Modeling and Evaluation
+
+A machine learning model, such as Logistic Regression, is trained using the prepared data.
+
+Model performance is evaluated using metrics like accuracy, confusion matrix, and classification reports to understand how well it predicts survival.
+
+Reflection: Evaluating the model on a separate test set helps assess its reliability and provides insight into potential areas for improvement.
