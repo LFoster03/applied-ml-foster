@@ -1,110 +1,126 @@
-Project: Iris Dataset Analysis
+Iris Dataset Classification Project
+
+Author: Lindsay Foster
+Date: 10/30/2025
+
 1. Introduction
 
-Dataset description: The Iris dataset contains 150 observations of iris flowers with four features: sepal_length, sepal_width, petal_length, petal_width and a target species (three classes: Setosa, Versicolor, Virginica).
+The Iris dataset is a classic dataset in machine learning, containing 150 samples of iris flowers from three species: Setosa, Versicolor, and Virginica. Each sample has four features: sepal length, sepal width, petal length, and petal width.
 
-Goal: Predict the species of iris flowers based on the four numerical features.
+The goal of this project is to build a classification model that predicts the species of an iris flower based on these features. This project follows a structured workflow including data exploration, feature engineering, train/test splitting, modeling, and evaluation.
 
 2. Data Exploration
 
-Check the structure of the dataset:
+Dataset Overview
 
-Number of rows and columns.
+The dataset contains 150 rows and 5 columns (4 features + 1 target).
 
-Feature types (numeric vs categorical).
+All features are numeric, and the target is categorical.
 
-Check for missing values:
+Check for Missing Values
 
-Count how many missing values exist per column.
+The dataset does not have missing values, so no imputation is required.
 
-Iris dataset usually has no missing values, so you likely don’t need imputation.
+Unique Values and Class Distribution
 
-Check unique values:
+There are three unique classes in the target: Setosa, Versicolor, and Virginica.
 
-Target variable (species) has three classes.
+Class distribution is balanced across the dataset.
 
-Statistical summary:
+Visual Exploration
 
-Mean, median, min, max, standard deviation for each numeric feature.
+Pair plots and scatter plots were used to visualize feature relationships and class separation.
 
-Visual exploration:
-
-Pair plots, scatterplots, or boxplots for feature distributions by species.
+Petal length and petal width are particularly useful for distinguishing species.
 
 3. Feature Selection
 
-Input features (X): sepal_length, sepal_width, petal_length, petal_width.
+Input Features: Sepal length, sepal width, petal length, petal width
 
-Target (y): species.
+Target Variable: Species (Setosa, Versicolor, Virginica)
 
 Reflection:
 
-These features are numeric and likely predictive of species.
+All four numeric features were selected because they provide measurable distinctions between species.
 
-Petal length and width often show strong separation between classes.
+Petal length and width are expected to be highly predictive, while sepal dimensions may provide additional separation.
 
 4. Train/Test Split
 
-Split the data into training and test sets, e.g., 80% train, 20% test.
+The dataset was split into a training set (80%) and a test set (20%).
 
-Check class distribution of the target in train and test sets.
-
-Consider stratification to preserve class proportions across the split.
+Stratification was applied to maintain class distribution in both sets.
 
 Reflection:
 
-Ensures each species is adequately represented in both sets.
+Stratification helps ensure that each class is proportionally represented in both train and test sets.
 
-Improves model reliability.
+Training and test distributions closely match the original dataset, which supports unbiased model evaluation.
 
-5. Model Training
+5. Feature Scaling (Optional)
 
-Choose a classifier, e.g., Logistic Regression, K-Nearest Neighbors, or Decision Tree.
+Features were optionally standardized to improve the performance of certain classifiers (e.g., Logistic Regression, KNN).
 
-Train the model using the training set features (X_train) and target (y_train).
+Standardization ensures that all features are on a similar scale.
 
-Reflection:
+6. Model Training
 
-Assess which features contribute most to prediction.
+Logistic Regression was used as the primary classifier.
 
-Iris dataset is well-suited to classification because of clear separability of species.
-
-6. Model Evaluation
-
-Predict species on test set.
-
-Calculate metrics such as:
-
-Accuracy
-
-Confusion matrix
-
-Precision, recall, F1-score for each class
+The model was trained on the training set and evaluated on the test set.
 
 Reflection:
 
-Check if the model misclassifies specific species.
+Logistic Regression is appropriate for multiclass classification and provides interpretable results.
 
-Evaluate whether class balance or feature scaling affects results.
+The model leverages numeric feature values to predict species.
 
-7. Feature Importance / Visualization
+7. Model Evaluation
 
-Optional:
-
-Visualize decision boundaries for 2D feature combinations.
-
-Plot feature importance if using tree-based classifiers.
+Accuracy, confusion matrix, and classification reports were used to assess model performance.
 
 Reflection:
 
-Understand which features are most useful for separating classes.
+Setosa is easily separable from other species.
 
-8. Summary / Conclusion
+Misclassifications mainly occur between Versicolor and Virginica due to overlapping feature ranges.
 
-Summarize key findings:
+Overall, the model achieves high accuracy due to the clear separation of classes in feature space.
 
-Which features are most predictive.
+8. Feature Importance and Visualization
 
-How well the model performs on unseen data.
+Decision boundaries and feature plots were created using petal length and petal width.
 
-Any insights about species separability or misclassifications.
+Visualizations show how well features separate species and help interpret classifier decisions.
+
+Reflection:
+
+Petal measurements are the most informative features for classification.
+
+Visualization highlights areas where the classifier may misclassify overlapping species.
+
+Feature importance analysis supports understanding of the model’s decision-making process.
+
+9. Summary
+
+This project demonstrates a complete workflow for supervised classification using the Iris dataset:
+
+Data exploration and visualization
+
+Feature selection and justification
+
+Train/test splitting with stratification
+
+Optional feature scaling
+
+Model training and evaluation
+
+Interpretation of results through decision boundary visualization
+
+Key Insights:
+
+Petal length and width are highly predictive of species.
+
+Stratified splits preserve class distributions, improving model reliability.
+
+Visual analysis complements numerical evaluation and provides interpretable insights.
