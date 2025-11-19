@@ -11,7 +11,7 @@ In this project, we use the Titanic dataset to build and evaluate three classifi
 
 - Use Python’s built-in venv module: python -m venv .venv. .venv is the folder where your virtual environment will be stored.After this, your project folder will have a .venv directory.Tip: Use lowercase .venv (or venv) for convention. VS Code automatically recognizes .venv.
 
-- Activate the virtual environment: .venv\Scripts\Activate.ps1. A requirements.txt lists all the Python packages your project needs so others (or you in a new environment) can install them easily with pip install -r requirements.txt.
+- Activate the virtual environment: .venv\Scripts\Activate. A requirements.txt lists all the Python packages your project needs so others (or you in a new environment) can install them easily with pip install -r requirements.txt.
 
 ### For Project 3 – Titanic Dataset Analysis, here’s a typical requirements.txt you can use:
 
