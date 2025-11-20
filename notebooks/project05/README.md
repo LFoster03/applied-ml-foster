@@ -48,7 +48,7 @@ df.head()
 
 Dataset contains 1599 samples, 11 features (e.g., acidity, sulphates, alcohol) and 1 target (quality rated 0–10).
 
-We simplify quality into three categories: low (3–4), medium (5–6), high (7–8).
+Simplified quality into three categories: low (3–4), medium (5–6), high (7–8).
 
 Checked column types, missing values, and initial distribution.
 
@@ -72,21 +72,26 @@ Train/test split 80/20 with stratification to preserve class balance.
 
 Models tested:
 
-Random Forest (100 trees)
+    - Random Forest (100 trees)
 
-Gradient Boosting (100 trees)
+    - Gradient Boosting (100 trees)
 
-Voting Classifier (DT + SVM + NN)
+    - Voting Classifier (DT + SVM + NN)
 
 Evaluated using Accuracy, Precision, Recall, F1 Score on both train and test sets.
 
 Calculated train-test gaps to assess overfitting.
 
 ## Step 6: Compare Results
-Model	Train Accuracy	Test Accuracy	Train F1	Test F1	Accuracy Gap	F1 Gap
-Random Forest (100 trees)	0.92	0.89	0.90	0.87	0.03	0.03
-Voting Classifier (DT+SVM+NN)	0.91	0.87	0.88	0.84	0.04	0.04
-Gradient Boosting (100 trees)	0.89	0.86	0.88	0.84	0.03	0.04
+
+**Model Performance Comparison**
+
+| Model                           | Train Accuracy | Test Accuracy | Train F1 | Test F1 | Accuracy Gap | F1 Gap |
+|---------------------------------|----------------|---------------|----------|---------|--------------|--------|
+| Random Forest (100 trees)       | 0.92           | 0.89          | 0.90     | 0.87    | 0.03         | 0.03   |
+| Voting Classifier (DT+SVM+NN)   | 0.91           | 0.87          | 0.88     | 0.84    | 0.04         | 0.04   |
+| Gradient Boosting (100 trees)   | 0.89           | 0.86          | 0.88     | 0.84    | 0.03         | 0.04   |
+
 
 Random Forest had highest test accuracy but slightly higher overfitting.
 
@@ -100,8 +105,4 @@ Random Forest is recommended for accuracy, while Voting Classifier balances gene
 
 Feature importance highlights alcohol, acidity, and sulphates as key predictors.
 
-Next steps: hyperparameter tuning, handling class imbalance (SMOTE/class weights), cross-validation, stacking/blending models.
-
 Ensembles clearly outperform single models and provide robust predictions for red wine quality.
-
-Note: This project demonstrates the value of combining multiple models, interpreting results carefully, and narrating a data-driven story for stakeholders.
